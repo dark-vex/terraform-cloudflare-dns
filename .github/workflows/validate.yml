@@ -52,6 +52,5 @@ jobs:
         uses: terraform-docs/gh-actions@v1
         with:
           working-dir: .
-          output-file: README.md
-          output-method: inject
+          config-file: .terraform-docs.yml
           fail-on-diff: true
