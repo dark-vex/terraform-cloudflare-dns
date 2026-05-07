@@ -60,7 +60,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 | ---- | ----------- | ---- | ------- | :------: |
-| <a name="input_records"></a> [records](#input\_records) | Map of DNS records to create | <pre>map(object({<br/>    name     = string<br/>    type     = string<br/>    content  = optional(string)<br/>    proxied  = optional(bool, false)<br/>    priority = optional(number)<br/>    ttl      = optional(number, 1)<br/>    comment  = optional(string)<br/>    data     = optional(object({<br/>      certificate   = string<br/>      matching_type = number<br/>      selector      = number<br/>      usage         = number<br/>    }))<br/>  }))</pre> | n/a | yes |
+| <a name="input_records"></a> [records](#input\_records) | Map of DNS records to create | <pre>map(object({<br/>    name     = string<br/>    type     = string<br/>    content  = optional(string)<br/>    proxied  = optional(bool, false)<br/>    priority = optional(number)<br/>    ttl      = optional(number, 1)<br/>    comment  = optional(string)<br/>    data = optional(object({<br/>      certificate   = string<br/>      matching_type = number<br/>      selector      = number<br/>      usage         = number<br/>    }))<br/>  }))</pre> | n/a | yes |
 | <a name="input_zone_id"></a> [zone\_id](#input\_zone\_id) | Cloudflare zone ID | `string` | n/a | yes |
 
 ## Outputs
