@@ -2,7 +2,7 @@
 
 Terraform module for managing Cloudflare DNS records using the [cloudflare/cloudflare](https://registry.terraform.io/providers/cloudflare/cloudflare) provider.
 
-Manages a set of DNS records for a single zone via `for_each`, supporting all record types including complex types that require a `data` block (e.g., TLSA).
+Manages a set of DNS records for a single zone via `for_each`, supporting all record types including complex types that require a `data` block (e.g., TLSA, CAA).
 
 ## Usage
 
@@ -25,6 +25,15 @@ module "dns_example_com" {
       content  = "mail.example.com"
       priority = 10
       ttl      = 300
+    }
+    "caa_letsencrypt" = {
+      name = "@"
+      type = "CAA"
+      data = {
+        flags = 0
+        tag   = "issue"
+        value = "letsencrypt.org"
+      }
     }
   }
 }
@@ -60,7 +69,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 | ---- | ----------- | ---- | ------- | :------: |
-| <a name="input_records"></a> [records](#input\_records) | Map of DNS records to create | <pre>map(object({<br/>    name     = string<br/>    type     = string<br/>    content  = optional(string)<br/>    proxied  = optional(bool, false)<br/>    priority = optional(number)<br/>    ttl      = optional(number, 1)<br/>    comment  = optional(string)<br/>    data = optional(object({<br/>      certificate   = string<br/>      matching_type = number<br/>      selector      = number<br/>      usage         = number<br/>    }))<br/>  }))</pre> | n/a | yes |
+| <a name="input_records"></a> [records](#input\_records) | Map of DNS records to create | <pre>map(object({<br/>    name     = string<br/>    type     = string<br/>    content  = optional(string)<br/>    proxied  = optional(bool, false)<br/>    priority = optional(number)<br/>    ttl      = optional(number, 1)<br/>    comment  = optional(string)<br/>    data = optional(object({<br/>      # TLSA<br/>      certificate   = optional(string)<br/>      matching_type = optional(number)<br/>      selector      = optional(number)<br/>      usage         = optional(number)<br/>      # CAA<br/>      flags = optional(number)<br/>      tag   = optional(string)<br/>      value = optional(string)<br/>    }))<br/>  }))</pre> | n/a | yes |
 | <a name="input_zone_id"></a> [zone\_id](#input\_zone\_id) | Cloudflare zone ID | `string` | n/a | yes |
 
 ## Outputs

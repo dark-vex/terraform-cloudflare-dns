@@ -14,10 +14,15 @@ variable "records" {
     ttl      = optional(number, 1)
     comment  = optional(string)
     data = optional(object({
-      certificate   = string
-      matching_type = number
-      selector      = number
-      usage         = number
+      # TLSA
+      certificate   = optional(string)
+      matching_type = optional(number)
+      selector      = optional(number)
+      usage         = optional(number)
+      # CAA
+      flags = optional(number)
+      tag   = optional(string)
+      value = optional(string)
     }))
   }))
 }

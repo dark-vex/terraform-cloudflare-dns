@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- CAA record support: `data` now also accepts `flags`, `tag` and `value`
+  (TLSA fields are unchanged; every `data` attribute is now optional, so
+  existing TLSA callers keep working without edits)
+
 ## v1.0.0 — 2026-05-07
 
 ### Added
